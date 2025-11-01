@@ -1,0 +1,32 @@
+{{!< default}}
+
+<main id="main" class="site-main">
+    <div id="primary" class="content-area">
+
+        <header class="archive-header author-header">
+            {{#author}}
+                {{#if profile_image}}
+                    <img src="{{profile_image}}" alt="{{name}}" class="author-avatar-large">
+                {{/if}}
+                <h1 class="archive-title">{{name}}</h1>
+                {{#if bio}}
+                    <div class="archive-description">
+                        <p>{{bio}}</p>
+                    </div>
+                {{/if}}
+                {{#if website}}
+                    <a href="{{website}}" class="author-website" target="_blank" rel="noopener">Visit Website</a>
+                {{/if}}
+            {{/author}}
+        </header>
+
+        <div class="post-grid cols-{{@custom.grid_columns}}">
+            {{#foreach posts}}
+                {{> "post-card"}}
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+
+    </div>
+</main>

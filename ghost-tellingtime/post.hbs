@@ -1,0 +1,87 @@
+{{!< default}}
+
+<main id="main" class="site-main">
+    <div id="primary" class="content-area the-post">
+        {{#post}}
+            <article class="{{post_class}}">
+                <div class="post-inner">
+                    {{#if feature_image}}
+                        <div class="thumbnail-wrapper full-width">
+                            <figure class="post-thumbnail">
+                                <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                            </figure>
+                        </div>
+                    {{/if}}
+
+                    <header class="entry-header">
+                        {{#if primary_tag}}
+                            <div class="entry-meta-before-title">
+                                <span class="cat-links">
+                                    <a href="{{primary_tag.url}}" rel="category tag">{{primary_tag.name}}</a>
+                                </span>
+                            </div>
+                        {{/if}}
+
+                        <h1 class="entry-title">{{title}}</h1>
+
+                        <div class="entry-meta-after-title">
+                            <span class="posted-on">
+                                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM DD, YYYY"}}</time>
+                            </span>
+                            {{#if primary_author}}
+                                <span class="byline">
+                                    by <a href="{{primary_author.url}}" rel="author">{{primary_author.name}}</a>
+                                </span>
+                            {{/if}}
+                            <span class="reading-time">{{reading_time}}</span>
+                        </div>
+                    </header>
+
+                    <div class="entry-content">
+                        {{content}}
+                    </div>
+
+                    {{#if tags}}
+                        <footer class="entry-footer">
+                            <div class="post-tags">
+                                <span class="tags-title">Tags:</span>
+                                {{#foreach tags}}
+                                    <a href="{{url}}" rel="tag">{{name}}</a>{{#unless @last}}, {{/unless}}
+                                {{/foreach}}
+                            </div>
+                        </footer>
+                    {{/if}}
+
+                    {{!-- Author Bio --}}
+                    {{#if primary_author}}
+                        <div class="author-bio">
+                            {{#if primary_author.profile_image}}
+                                <img src="{{primary_author.profile_image}}" alt="{{primary_author.name}}" class="author-avatar">
+                            {{/if}}
+                            <div class="author-info">
+                                <h4 class="author-name">
+                                    <a href="{{primary_author.url}}">{{primary_author.name}}</a>
+                                </h4>
+                                {{#if primary_author.bio}}
+                                    <p class="author-description">{{primary_author.bio}}</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/if}}
+
+                    {{!-- Related Posts --}}
+                    <div class="related-posts">
+                        <h3 class="related-title">Related Posts</h3>
+                        <div class="post-grid cols-3">
+                            {{#get "posts" limit="3" filter="tag:{{primary_tag.slug}}+id:-{{id}}" include="tags,authors"}}
+                                {{#foreach posts}}
+                                    {{> "post-card"}}
+                                {{/foreach}}
+                            {{/get}}
+                        </div>
+                    </div>
+                </div>
+            </article>
+        {{/post}}
+    </div>
+</main>

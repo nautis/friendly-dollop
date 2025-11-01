@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{meta_title}}</title>
+
+    {{#is "home"}}
+        <meta name="description" content="{{@site.description}}">
+    {{else}}
+        <meta name="description" content="{{meta_description}}">
+    {{/is}}
+
+    <link rel="stylesheet" type="text/css" href="{{asset "css/style.css"}}">
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <div class="body-fade menu-overlay"></div>
+    <div class="body-fade search-overlay"></div>
+
+    {{!-- Header --}}
+    <header id="site-header" class="site-header">
+        <div class="mobile-header">
+            <div class="header-section header-left">
+                <button class="toggle-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            {{#if @site.logo}}
+                <div class="logo-branding mobile-logo">
+                    <a href="{{@site.url}}">
+                        <img src="{{@site.logo}}" alt="{{@site.title}}">
+                    </a>
+                </div>
+            {{else}}
+                <div class="logo-branding mobile-logo">
+                    <a href="{{@site.url}}" class="site-title">{{@site.title}}</a>
+                </div>
+            {{/if}}
+
+            <div class="header-section header-right">
+                <button class="toggle-search" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-layout-wrapper">
+            <div class="header-branding">
+                <div class="header-section header-left">
+                    {{#if @site.logo}}
+                        <div class="logo-branding">
+                            <a href="{{@site.url}}">
+                                <img src="{{@site.logo}}" alt="{{@site.title}}">
+                            </a>
+                        </div>
+                    {{else}}
+                        <div class="logo-branding">
+                            <a href="{{@site.url}}" class="site-title">{{@site.title}}</a>
+                        </div>
+                    {{/if}}
+                </div>
+
+                <div class="header-section header-right">
+                    <nav class="primary-nav">
+                        {{navigation}}
+                    </nav>
+                    <button class="toggle-search desktop-search" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{!-- Search Overlay --}}
+    <div class="search-sidebar" id="search-sidebar">
+        <div class="search-content">
+            <button class="search-close" aria-label="Close search">&times;</button>
+            <form class="search-form" action="{{@site.url}}/search/">
+                <input type="search" name="q" placeholder="Search..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    {{!-- Mobile Menu Sidebar --}}
+    <div class="menu-sidebar" id="menu-sidebar">
+        <nav class="mobile-nav">
+            {{navigation}}
+        </nav>
+    </div>
+
+    <div class="wrap">
+        <div class="wrap-inner">
+            {{{body}}}
+        </div>
+    </div>
+
+    {{!-- Footer --}}
+    <footer id="colophon" class="site-footer">
+        <div class="site-footer-inner">
+            <div class="footer-columns">
+                {{#if @site.secondary_navigation}}
+                    <div class="footer-column">
+                        <h4>Links</h4>
+                        <nav class="footer-nav">
+                            {{navigation type="secondary"}}
+                        </nav>
+                    </div>
+                {{/if}}
+
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <p>{{@site.description}}</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; {{date format="YYYY"}} {{@site.title}}. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="goto-top backtotop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+
+    <script src="{{asset "js/main.js"}}"></script>
+    {{ghost_foot}}
+</body>
+</html>

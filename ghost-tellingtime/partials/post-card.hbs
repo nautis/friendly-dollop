@@ -1,0 +1,39 @@
+<article class="post {{post_class}}">
+    <div class="post-inner">
+        {{#if feature_image}}
+            <div class="thumbnail-wrapper">
+                <figure class="post-thumbnail">
+                    <a href="{{url}}">
+                        <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                    </a>
+                </figure>
+            </div>
+        {{/if}}
+
+        <div class="entry-wrapper">
+            <header class="entry-header">
+                {{#if primary_tag}}
+                    <div class="entry-meta-before-title">
+                        <span class="cat-links">
+                            <a href="{{primary_tag.url}}" rel="category tag">{{primary_tag.name}}</a>
+                        </span>
+                    </div>
+                {{/if}}
+
+                <h3 class="entry-title">
+                    <a href="{{url}}">{{title}}</a>
+                </h3>
+            </header>
+
+            <div class="entry-excerpt">
+                <p>{{excerpt words="25"}}</p>
+            </div>
+
+            <div class="entry-meta">
+                <span class="posted-on">
+                    <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM DD, YYYY"}}</time>
+                </span>
+            </div>
+        </div>
+    </div>
+</article>

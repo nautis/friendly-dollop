@@ -1,0 +1,24 @@
+{{!< default}}
+
+<main id="main" class="site-main">
+    <div id="primary" class="content-area">
+
+        <header class="archive-header">
+            <h1 class="archive-title">{{tag.name}}</h1>
+            {{#if tag.description}}
+                <div class="archive-description">
+                    <p>{{tag.description}}</p>
+                </div>
+            {{/if}}
+        </header>
+
+        <div class="post-grid cols-{{@custom.grid_columns}}">
+            {{#foreach posts}}
+                {{> "post-card"}}
+            {{/foreach}}
+        </div>
+
+        {{pagination}}
+
+    </div>
+</main>
