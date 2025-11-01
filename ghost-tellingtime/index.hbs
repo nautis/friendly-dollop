@@ -1,0 +1,150 @@
+{{!< default}}
+
+<main id="main" class="site-main">
+    <div id="primary" class="content-area">
+
+        {{#if @custom.show_featured_post}}
+            {{#get "posts" limit="1" include="tags,authors"}}
+                {{#foreach posts}}
+                    <div class="featured-section">
+                        <article class="post-hero">
+                            {{#if feature_image}}
+                                <div class="hero-image">
+                                    <a href="{{url}}">
+                                        <img src="{{feature_image}}" alt="{{title}}">
+                                    </a>
+                                </div>
+                            {{/if}}
+                            <div class="hero-content">
+                                <h2 class="entry-title">
+                                    <a href="{{url}}">{{title}}</a>
+                                </h2>
+                                <p class="excerpt">{{excerpt words="30"}}</p>
+                            </div>
+                        </article>
+                    </div>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+
+        {{!-- Additional Featured Posts Grid --}}
+        <div class="post-grid cols-2 secondary-featured">
+            {{#get "posts" limit="4" offset="1" include="tags,authors"}}
+                {{#foreach posts}}
+                    <article class="post {{post_class}}">
+                        <div class="post-inner">
+                            {{#if feature_image}}
+                                <div class="thumbnail-wrapper">
+                                    <figure class="post-thumbnail">
+                                        <a href="{{url}}">
+                                            <img src="{{img_url feature_image size="m"}}" alt="{{title}}">
+                                        </a>
+                                    </figure>
+                                </div>
+                            {{/if}}
+
+                            <div class="entry-wrapper">
+                                <header class="entry-header">
+                                    <h3 class="entry-title">
+                                        <a href="{{url}}">{{title}}</a>
+                                    </h3>
+                                </header>
+                                <div class="entry-excerpt">
+                                    <p>{{excerpt words="20"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                {{/foreach}}
+            {{/get}}
+        </div>
+
+        {{!-- Watch reviews Section --}}
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Watch reviews</h2>
+                <a href="{{@site.url}}/tag/watch-reviews/" class="section-link">View More &rsaquo;</a>
+            </div>
+
+            <div class="post-grid cols-{{@custom.grid_columns}}">
+                {{#get "posts" limit="6" filter="tag:watch-reviews" include="tags,authors"}}
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+
+        {{!-- Industry news Section --}}
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Industry news</h2>
+                <a href="{{@site.url}}/tag/industry-news/" class="section-link">View More &rsaquo;</a>
+            </div>
+
+            <div class="post-grid cols-{{@custom.grid_columns}}">
+                {{#get "posts" limit="6" filter="tag:industry-news" include="tags,authors"}}
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+
+        {{!-- Videos Section --}}
+        <section class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Videos</h2>
+                <a href="{{@site.url}}/tag/videos/" class="section-link">View More &rsaquo;</a>
+            </div>
+
+            <div class="post-grid cols-{{@custom.grid_columns}}">
+                {{#get "posts" limit="6" filter="tag:videos" include="tags,authors"}}
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+
+        {{!-- History of Watchmaking Section --}}
+        <section class="content-section history-section">
+            <div class="section-header">
+                <h2 class="section-title">History of Watchmaking</h2>
+                <a href="{{@site.url}}/tag/history/" class="section-link">View More &rsaquo;</a>
+            </div>
+
+            <div class="post-grid cols-2">
+                {{#get "posts" limit="4" filter="tag:history" include="tags,authors"}}
+                    {{#foreach posts}}
+                        <article class="post history-post">
+                            <div class="post-inner horizontal-layout">
+                                {{#if feature_image}}
+                                    <div class="thumbnail-wrapper">
+                                        <figure class="post-thumbnail">
+                                            <a href="{{url}}">
+                                                <img src="{{img_url feature_image size="s"}}" alt="{{title}}">
+                                            </a>
+                                        </figure>
+                                    </div>
+                                {{/if}}
+
+                                <div class="entry-wrapper">
+                                    <header class="entry-header">
+                                        <h3 class="entry-title">
+                                            <a href="{{url}}">{{title}}</a>
+                                        </h3>
+                                    </header>
+                                    <div class="entry-excerpt">
+                                        <p>{{excerpt words="20"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {{/foreach}}
+                {{/get}}
+            </div>
+        </section>
+
+    </div>
+</main>

@@ -1,0 +1,27 @@
+{{!< default}}
+
+<main id="main" class="site-main">
+    <div id="primary" class="content-area the-post">
+        {{#post}}
+            <article class="{{post_class}}">
+                <div class="post-inner">
+                    {{#if feature_image}}
+                        <div class="thumbnail-wrapper full-width">
+                            <figure class="post-thumbnail">
+                                <img src="{{img_url feature_image size="xl"}}" alt="{{title}}">
+                            </figure>
+                        </div>
+                    {{/if}}
+
+                    <header class="entry-header">
+                        <h1 class="entry-title">{{title}}</h1>
+                    </header>
+
+                    <div class="entry-content">
+                        {{content}}
+                    </div>
+                </div>
+            </article>
+        {{/post}}
+    </div>
+</main>
